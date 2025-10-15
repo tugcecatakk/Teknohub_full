@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from './components/navbar'
+import Footer from './components/footer'
+import Home from './pages/home'
 
 export default function App() {
   return (
-    <div className="bg-purple-500 ">
-      Hello
-    </div>
+    <Home/>
   )
 }
