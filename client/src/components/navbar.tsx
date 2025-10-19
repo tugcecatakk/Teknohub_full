@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div className='fixed top-0 bg-opacity-50 h-20 w-full flex items-center justify-between border-b border-gray-400 rounded-md '>
+    <div className='fixed top-0 bg-white bg-opacity-95 backdrop-blur-sm h-20 w-full flex items-center justify-between border-b border-gray-400 rounded-md shadow-sm z-50'>
       <div className='ml-3 text-3xl '>
         <h1 className='font-serif bg-gradient-to-r from-orange-500  to-pink-500 bg-clip-text text-transparent'>TeknoHub</h1>
       </div>
