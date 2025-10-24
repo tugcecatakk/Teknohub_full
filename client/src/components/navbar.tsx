@@ -13,14 +13,22 @@ const Navbar = () => {
         <Link to="/about">Hakkımda</Link>
         <Link to="/contact">İletişim</Link>
       </div>
-      
+
       <div className='space-x-4'>
-        <button className=''>Giriş Yap</button>
-        <button className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform '>Kayıt Ol</button>
+        <Link to="/login" className=''>
+          Giriş Yap
+        </Link>
+        <Link to="/kayıtol" className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform'>
+          Kayıt Ol
+        </Link>
       </div>
-      
+
+
+     
     </div>
-  ) 
+
+   
+  )
 }
 
 export default Navbar;

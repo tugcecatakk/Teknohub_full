@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Button} from "../components/buton";
-import {Card,CardContent} from "../components/card";
+import {Card,CardContent} from "../components/cardd";
 import {Link,useNavigate} from "react-router-dom";
 import {Mail,Lock,ArrowRight} from "lucide-react";
 import {useState} from "react";
@@ -30,7 +30,7 @@ const Login =() =>{
       
       <Card className="glass-card w-full max-w-md relative z-10 animate-fade-in">
         <CardContent className="p-8">
-          {/* Logo */}
+      
           <div className="text-center mb-8">
             <Link to="/">
               <h1 className="text-3xl font-serif font-bold gradient-text mb-2">TeknoHub</h1>
@@ -38,11 +38,11 @@ const Login =() =>{
             <p className="text-muted-foreground">Hesabınıza giriş yapın</p>
           </div>
 
-          {/* Login Form */}
+          
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
-                E-posta Adresi
+                Email
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
@@ -54,7 +54,7 @@ const Login =() =>{
                   onChange={handleChange}
                   required
                   className="w-full pl-11 pr-4 py-3 bg-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
-                  placeholder="ornek@email.com"
+                  placeholder="Email"
                 />
               </div>
             </div>
@@ -73,7 +73,7 @@ const Login =() =>{
                   onChange={handleChange}
                   required
                   className="w-full pl-11 pr-4 py-3 bg-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
-                  placeholder="••••••••"
+                  placeholder="********"
                 />
               </div>
             </div>
@@ -94,22 +94,14 @@ const Login =() =>{
             </Button>
           </form>
 
-          {/* Divider */}
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="bg-card px-4 text-muted-foreground">veya</span>
-            </div>
-          </div>
+          
 
         
 
      
           <p className="text-center text-sm text-muted-foreground mt-6">
             Hesabınız yok mu?{" "}
-            <Link to="/kayıt" className="text-primary hover:underline font-medium">
+            <Link to="/kayıtol" className="text-primary hover:underline font-medium">
               Kayıt Olun
             </Link>
           </p>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Button} from "../components/buton";
-import {Card,CardContent} from "../components/card";
+import {Card,CardContent} from "../components/cardd";
 import {Link,useNavigate} from "react-router-dom";
 import {Mail,Lock,ArrowRight, User} from "lucide-react";
 import {useState} from "react";
@@ -40,7 +40,7 @@ const KayıtOl =()=>{
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Ad Soyad Alanı */}
+           
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">Ad Soyad</label>
               <div className="relative">
@@ -53,14 +53,14 @@ const KayıtOl =()=>{
                   onChange={handleChange}
                   required
                   className="w-full pl-11 pr-4 py-3 bg-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
-                  placeholder="Ad Soyad  giriniz "
+                  placeholder="Ad Soyad "
                 />
               </div>
             </div>
 
-            {/* E-posta Alanı */}
+           
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">E-posta Adresi</label>
+              <label htmlFor="email" className="text-sm font-medium">Email</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                 <input
@@ -71,12 +71,12 @@ const KayıtOl =()=>{
                   onChange={handleChange}
                   required
                   className="w-full pl-11 pr-4 py-3 bg-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
-                  placeholder=" "
+                  placeholder="Email"
                 />
               </div>
             </div>
 
-            {/* Şifre Alanı */}
+           
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">Şifre</label>
               <div className="relative">
@@ -93,10 +93,9 @@ const KayıtOl =()=>{
                   placeholder="********"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">En az 8 karakter olmalıdır</p>
+              <p className="text-xs text-muted-foreground">En az 8 karakter olmalıdır.</p>
             </div>
 
-            {/* Şifre Tekrar Alanı */}
             <div className="space-y-2">
               <label htmlFor="confirmPassword" className="text-sm font-medium">Şifre Tekrar</label>
               <div className="relative">
@@ -105,7 +104,7 @@ const KayıtOl =()=>{
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
-                  value={formData.confirmPassword}
+                  value={formData.confirmpassword}
                   onChange={handleChange}
                   required
                   className="w-full pl-11 pr-4 py-3 bg-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
