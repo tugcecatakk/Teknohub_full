@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div >
-    <div className='h-80 w-full flex items-center justify-between border-t border-gray-400 rounded-md '>
+    <div className='bg-[#faf8f5]'>
+    <div className=' h-80 w-full flex items-center justify-between border-t border-gray-400 rounded-md '>
       <div>
         <h1 className='font-serif bg-gradient-to-r from-orange-500  to-pink-500 bg-clip-text text-transparent'>TeknoHub</h1>
         <h3>Teknoloji, tasarım ve yazılım dünyasından en güncel içerikler.</h3>

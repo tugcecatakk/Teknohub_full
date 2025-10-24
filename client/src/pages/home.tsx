@@ -33,7 +33,7 @@ fetch('http://localhost:3001/api/kategoriler')
 
     
   return (
-   <div className='min-h-screen  bg-[#f9f8f7] flex flex-col'>
+   <div className='min-h-screen  bg-[#faf8f5] flex flex-col'>
     
     <Navbar/>
     <OneCikanIcerik />
@@ -50,7 +50,7 @@ fetch('http://localhost:3001/api/kategoriler')
     <SonYazilar />
 
     </div>
-<Footer />
+
     </div>
   ) 
 }
