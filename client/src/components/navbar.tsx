@@ -18,7 +18,7 @@ const Navbar = () => {
         <Link to="/login" className=''>
           Giriş Yap
         </Link>
-        <Link to="/kayıtol" className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform'>
+        <Link to="/kayitol" className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform'>
           Kayıt Ol
         </Link>
       </div>

@@ -101,7 +101,7 @@ const Login =() =>{
      
           <p className="text-center text-sm text-muted-foreground mt-6">
             Hesabınız yok mu?{" "}
-            <Link to="/kayıtol" className="text-primary hover:underline font-medium">
+            <Link to="/kayitol" className="text-primary hover:underline font-medium">
               Kayıt Olun
             </Link>
           </p>
