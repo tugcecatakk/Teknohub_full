@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import myImage from '../assets/Gemini_Generated_Image_krslpakrslpakrsl.png'
 import { Heart, MessageCircle } from 'lucide-react';
 interface SonYazilarProps {
+
+    id:string;
     baslik: string;
     icerik: string;
     olusturulma_tarihi: string;
@@ -23,7 +25,7 @@ useEffect(()=>{
   return (
     <div className='flex flex-row justify-center items-center mb-10'>
  {yazilar.slice(0,3).map((yazi)=>(
-            <div key={yazi.olusturulma_tarihi} className='w-1/3 m-5 rounded-xl bg-white  flex flex-col'>
+            <div key={yazi.id} className='w-1/3 m-5 rounded-xl bg-white  flex flex-col'>
  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=600&fit=crop" className='rounded-t-xl h-40 w-full object-cover' />
     <div className='p-3 flex-1 flex flex-col'>
         <h2 className='text-xl font-serif mb-2 line-clamp-2'>{yazi.baslik}</h2>
