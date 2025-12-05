@@ -14,21 +14,24 @@ import YazıDetay from './pages/yazıdetay'
 
 function AppLayout(){
   const location =useLocation();
-  const isAuthPage=location.pathname==="/login" || location.pathname==="/kayitol" || location.pathname==="/categories";
+  const NavbarYok=location.pathname==="/login" || location.pathname==="/kayitol" ;
+  const FooterYok=location.pathname==="/login" || location.pathname==="/kayitol" || location.pathname==="/categories" || location.pathname.startsWith("/category/") ||
+    location.pathname.startsWith("/yazi/") ;
+
   return(
     <>
-      {!isAuthPage && <Navbar />}
+      {!NavbarYok && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path ="about" element={<About />}/>
         <Route path ="login" element={<Login />}/>
         <Route path ="kayitol" element={<KayıtOl />}/>
         <Route path ="/categories" element={<Categories />}/>
-        <Route path='/category/:slug' element={<KategoriDetay />} />
-        <Route path='/yazi/:id' element={<YazıDetay/>} />
+        <Route path="/category/:slug" element={<KategoriDetay />} />
+        <Route path="/yazi/:id" element={<YazıDetay/>} />
 
         </Routes>
-        {!isAuthPage && <Footer />}
+        {!FooterYok && <Footer />}
 
     </>
 

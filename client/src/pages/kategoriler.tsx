@@ -71,54 +71,9 @@ const Categories = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="pt-24"></div>
      
-      <header className="border-b border-border backdrop-blur-md bg-background/80 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/">
-            <h1 className="text-2xl font-serif font-bold gradient-text">
-              TeknoHub
-            </h1>
-          </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              to="/"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Anasayfa
-            </Link>
-            <Link
-              to="/categories"
-              className="text-sm font-medium text-primary"
-            >
-              Kategoriler
-            </Link>
-            <Link
-              to="/about"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Hakkımda
-            </Link>
-            <Link
-              to="/contact"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              İletişim
-            </Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="ghost" size="sm">
-                Giriş Yap
-              </Button>
-            </Link>
-            <Link to="/kayitol">
-              <Button size="sm" className="gradient-primary">
-                Kayıt Ol
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+
 
       
       <section className="container mx-auto px-4 py-12 md:py-20 text-center space-y-4 animate-fade-in">
@@ -170,7 +125,7 @@ const Categories = () => {
                         {category.aciklama}
                       </p>
                     )}
-                    <Link to={`/category/${category.slug}`} />
+                 
                     <Button
                       variant="ghost"
                       size="sm"

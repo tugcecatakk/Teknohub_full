@@ -43,6 +43,7 @@ fetchYazılar();
 
     return (
     <div className="container mx-auto px-4 py-12">
+        <div className="pt-24"></div>
       <h1 className="text-4xl font-bold mb-6">{yazı.baslik}</h1>
       {yazı.image_url&& (
         <img
