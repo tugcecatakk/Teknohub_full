@@ -50,7 +50,7 @@ app.get('/api/kategoriler', async (req: Request, res: Response) => {
 
 app.get('/api/icerikler',async(req:Request,res:Response)=>{
    try {
-    console.log('Kategoriler endpoint çağrıldı');
+    console.log('İçerikler endpoint çağrıldı');
     
     const { data, error } = await supabase
       .from('yazilar')
@@ -58,10 +58,10 @@ app.get('/api/icerikler',async(req:Request,res:Response)=>{
         id,
         baslik,
         icerik,
-        olusturulma_tarihi,
-        yazar_id ( kullanici_adi ) 
+        olusturulma_tarihi::date,
+        yazar_id ( kullanici_adi )
       `)
-      .order('olusturulma_tarihi', { ascending: true });
+      .order('olusturulma_tarihi', { ascending: false });
 
     if (error) {
       console.error('Supabase hatası:', error);
@@ -80,11 +80,43 @@ app.get('/api/icerikler',async(req:Request,res:Response)=>{
   } 
 });
 
+app.get('/api/yazarlar', async (req: Request, res: Response) => {
+  try {
+    console.log('Yazarlar endpoint çağrıldı');
+    
+    const { data, error } = await supabase
+      .from('yazarlar')
+      .select('*')
+      .order('id', { ascending: true });
+
+    if (error) {
+      console.error('Yazarlar Supabase hatası:', error);
+      return res.status(500).json({ 
+        error: 'Yazarlar çekilemedi',
+        message: error.message 
+      });
+    }
+
+    console.log('Yazarlar başarıyla çekildi:', data?.length || 0, 'adet');
+    console.log('İlk yazar örneği:', JSON.stringify(data?.[0], null, 2));
+    res.json(data);
+
+  } catch (err: any) {
+    console.error("Yazarlar hatası:", err.message);
+    res.status(500).json({ 
+      error: 'Yazarlar çekilemedi',
+      message: err.message 
+    });
+  }
+});
+
 // Server'ı başlat
 const server = app.listen(port, () => {
   console.log(`✅ Backend sunucusu http://localhost:${port} adresinde başarıyla başlatıldı!`);
   console.log(`🔗 Test için: http://localhost:${port}/api/test`);
   console.log(`📁 Kategoriler için: http://localhost:${port}/api/kategoriler`);
+  console.log(`📝 İçerikler için: http://localhost:${port}/api/icerikler`);
+  console.log(`👥 Yazarlar için: http://localhost:${port}/api/yazarlar`);
 });
 
 // Graceful shutdown

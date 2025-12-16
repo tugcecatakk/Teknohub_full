@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+interface Kategori{
+    id: number;
+    ad:string;
+}
 
 const Footer = () => {
+    const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
+  
+      useEffect(() =>{
+  fetch('http://localhost:3001/api/kategoriler')
+  .then(res =>res.json())
+  .then(data =>setKategoriler(data))
+  .catch(err => console.error('Kategoriler çekilirken hata oluştu:', err));
+  
+      }, []);
+  
   return (
     <div className='bg-[#faf8f5]'>
     <div className=' h-80 w-full flex items-center justify-between border-t border-gray-400 rounded-md '>
@@ -11,33 +26,28 @@ const Footer = () => {
       <div>
         <h1>Kategoriler</h1>
         <ul>
-            <li><a href="/">Tasarım</a></li>
-            <li>
-                <a href="/">Yazılım</a>
+        {kategoriler.map((kategori) => (
+            <li key={kategori.id}>
+            <a href={`/kategori/${kategori.id}`}>{kategori.ad}</a>
             </li>
-            <li>
-                <a href="/">Frontend</a>
-            </li>
-            <li>
-                <a href="/">UI/UX</a>
-            </li>
+        ))}
         </ul>
       </div>
       <div>
         <h1>Hızlı Linkler</h1>
         <ul>
-            <li>
-                <a href="/">Hakkımızda</a>
-            </li>
-            <li>
-                <a href="/">İletişim</a>
-            </li>
-            <li>
-                <a href="/">Profil</a>
-            </li>
-            <li>
-                <a href="/">Yazı Oluştur</a>
-            </li>
+        <li>
+            <a href="/">Hakkımızda</a>
+        </li>
+        <li>
+            <a href="/">İletişim</a>
+        </li>
+        <li>
+            <a href="/">Profil</a>
+        </li>
+        <li>
+            <a href="/">Yazı Oluştur</a>
+        </li>
         </ul>
       </div>
       <div>

@@ -1,9 +1,26 @@
 import { ChevronsLeftRight, Github, Heart, Linkedin, Mail, MessageCircle, Sparkles, Twitter } from 'lucide-react';
-import React from 'react'
-import myImage from '../assets/unnamed.jpg'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 
+import { Link } from 'react-router-dom';
+interface OneCikanIcerikProps {
+    baslik: string;
+    icerik: string;
+    olusturulma_tarihi: string;
+    yazar_id: {
+        kullanici_adi: string;
+        image: string;
+    };
+    image: string;
+}
 const About = () => {
+    const [yazilar, setYazilar]=useState<OneCikanIcerikProps[]>([]);
+    
+        useEffect(()=>{
+            fetch('http://localhost:3001/api/icerikler')
+            .then(res => res.json())
+            .then(data => setYazilar(data))
+            .catch(err => console.error('İçerikler çekilirken hata oluştu:', err));
+        }, []);
   return (
     <div className='bg-[#faf8f5]'>
 <div className='flex flex-row gap-8 px-6 pt-48'>
@@ -11,14 +28,15 @@ const About = () => {
 
     <div className='flex flex-row space-x-3'>
 <Sparkles color='#e06500'/>
-    <h2 className='text-[#e06500]'>Blog Yazarı & Tasarımcı</h2>
+    <h2 className='text-[#e06500]'>Blog Yazarları & Tasarımcılar</h2>
     </div>
     
 
   <div>
-    <h3 className='text-7xl font-serif '>Merhaba, Ben Ayşe Yılmaz</h3>
+    <h3 className='text-7xl font-serif '>TeknoHub Ekibi
+</h3>
     <br />
-    <h1 className='text-lg '>Web tasarımı ve yazılım geliştirme konularında tutkulu bir içerik üreticisiyim. Modern teknolojiler, kullanıcı deneyimi ve estetik tasarım ilkelerini harmanlayarak değerli içerikler üretiyorum.</h1>
+    <h1 className='text-lg '>Web tasarımı ve yazılım geliştirme konularında tutkulu bir ekibiz. Modern teknolojiler, kullanıcı deneyimi ve estetik tasarım ilkelerini harmanlayarak değerli içerikler üretiyoruz.</h1>
   </div>
 
 
@@ -41,22 +59,26 @@ const About = () => {
     </div>
 </div>
 <div className='flex-1 flex justify-center items-center'>
-    <img src={myImage} alt="" className='h-[32rem] w-full max-w-xl object-cover rounded-lg shadow-lg'/>
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=800&fit=crop" alt="" className='h-[32rem] w-full max-w-xl object-cover rounded-lg shadow-lg'/>
 </div>
 
     </div>
     <div className='flex flex-row gap-2 my-32 mx-8 justify-center text-center'>
-        <div className='bg-white flex-1 h-32 rounded-3xl flex items-center justify-center shadow-sm'>
+        <div className='bg-white flex-1 h-32 rounded-3xl flex flex-col items-center justify-center shadow-sm'>
             <span className='text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent'>250+</span>
+            <span className='text-sm text-gray-600'>Yazı</span>
         </div>
-        <div className='bg-white flex-1 h-32 rounded-3xl flex items-center justify-center shadow-sm'>
+        <div className='bg-white flex-1 h-32 rounded-3xl flex flex-col items-center justify-center shadow-sm'>
             <span className='text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent'>180+</span>
+            <span className='text-sm text-gray-600'>Takipçi</span>
         </div>
-        <div className='bg-white flex-1 h-32 rounded-3xl flex items-center justify-center shadow-sm'>
+        <div className='bg-white flex-1 h-32 rounded-3xl flex flex-col items-center justify-center shadow-sm'>
             <span className='text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent'>95%</span>
+            <span className='text-sm text-gray-600'>Yorum</span>
         </div>
-        <div className='bg-white flex-1 h-32 rounded-3xl flex items-center justify-center shadow-sm'>
+        <div className='bg-white flex-1 h-32 rounded-3xl flex flex-col items-center justify-center shadow-sm'>
             <span className='text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent'>24/7</span>
+            <span className='text-sm text-gray-600'>Destek</span>
         </div>
     </div>
     <div className='pb-32 max-w-4xl mx-auto px-6'>
