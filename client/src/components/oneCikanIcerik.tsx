@@ -7,18 +7,44 @@ interface OneCikanIcerikProps {
     olusturulma_tarihi: string;
     yazar_id: {
         kullanici_adi: string;
+        image: string;
     };
+    image: string;
 }
 const OneCikanIcerik = () => {
 
     const [yazilar, setYazilar]=useState<OneCikanIcerikProps[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
+        setLoading(true);
         fetch('http://localhost:3001/api/icerikler')
         .then(res => res.json())
-        .then(data => setYazilar(data))
-        .catch(err => console.error('İçerikler çekilirken hata oluştu:', err));
+        .then(data => {
+            setYazilar(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error('İçerikler çekilirken hata oluştu:', err);
+            setLoading(false);
+        });
     }, []);
+
+    if (loading) {
+        return (
+            <div className='flex justify-center items-center h-64'>
+                <div className='text-gray-500'>İçerikler yükleniyor...</div>
+            </div>
+        );
+    }
+
+    if (yazilar.length === 0) {
+        return (
+            <div className='flex justify-center items-center h-64'>
+                <div className='text-gray-500'>Henüz içerik bulunmuyor.</div>
+            </div>
+        );
+    }
 
   return (
     <div> 
@@ -34,7 +60,7 @@ const OneCikanIcerik = () => {
     <h3 className='text-7xl font-serif '>{yazi.baslik}</h3>
     <p>{yazi.icerik}</p>
     <div className='flex flex-row space-x-3'>
-        <img src={myImage} alt="Imported resim" className='w-12 h-12 rounded-full' />
+        <img src={yazi.yazar_id.image} alt="Imported resim" className='w-12 h-12 rounded-full' />
         <div>
         <h1 className='text-lg font-semibold'>{yazi.yazar_id.kullanici_adi}</h1>
         <p className='text-sm text-gray-500'>Web Tasarımcı</p>
@@ -57,7 +83,7 @@ const OneCikanIcerik = () => {
     </div>
 </div>
 <div className='flex-1 flex justify-center items-center'>
-    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=600&fit=crop" alt="" className='h-[32rem] w-full max-w-xl object-cover rounded-lg shadow-lg'/>
+    <img src={"https://plus.unsplash.com/premium_photo-1661963874418-df1110ee39c1?q=80&w=1572&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt="" className='h-[32rem] w-full max-w-xl object-cover rounded-lg shadow-lg'/>
 </div>
     </div>
     </div>

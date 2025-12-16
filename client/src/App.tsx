@@ -10,6 +10,8 @@ import Categories from './pages/kategoriler'
 import KategoriDetay from './pages/kategoridetay'
 import YazıDetay from './pages/yazıdetay'
 import YaziDetay from './pages/yazıdetay'
+import { Contact } from 'lucide-react'
+import Admin from './pages/admin'
 
 
 
@@ -30,6 +32,8 @@ function AppLayout(){
         <Route path ="/categories" element={<Categories />}/>
         <Route path="/category/:slug" element={<KategoriDetay />} />
         <Route path="/yazi/:id" element={<YaziDetay/>} />
+         <Route path ="contact" element={<Contact />}/>
+      
 
         </Routes>
         {!FooterYok && <Footer />}

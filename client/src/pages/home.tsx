@@ -13,13 +13,20 @@ interface Kategori{
 const Home = () => {
 
     const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() =>{
-fetch('http://localhost:3001/api/kategoriler')
-.then(res =>res.json())
-.then(data =>setKategoriler(data))
-.catch(err => console.error('Kategoriler çekilirken hata oluştu:', err));
-
+        setLoading(true);
+        fetch('http://localhost:3001/api/kategoriler')
+        .then(res =>res.json())
+        .then(data =>{
+            setKategoriler(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error('Kategoriler çekilirken hata oluştu:', err);
+            setLoading(false);
+        });
     }, []);
 
 

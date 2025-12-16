@@ -67,7 +67,7 @@ const Navbar = () => {
       <div className='font-sans text-md space-x-10'>
         <Link to="/">Anasayfa</Link>
         <Link to="/categories">Kategoriler</Link>
-        <Link to="/about">Hakkımda</Link>
+        <Link to="/about">Hakkımızda</Link>
         <Link to="/contact">İletişim</Link>
       </div>
 
