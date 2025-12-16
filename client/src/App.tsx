@@ -9,6 +9,7 @@ import KayıtOl from './pages/kayıtol'
 import Categories from './pages/kategoriler'
 import KategoriDetay from './pages/kategoridetay'
 import YazıDetay from './pages/yazıdetay'
+import YaziDetay from './pages/yazıdetay'
 
 
 
@@ -28,7 +29,7 @@ function AppLayout(){
         <Route path ="kayitol" element={<KayıtOl />}/>
         <Route path ="/categories" element={<Categories />}/>
         <Route path="/category/:slug" element={<KategoriDetay />} />
-        <Route path="/yazi/:id" element={<YazıDetay/>} />
+        <Route path="/yazi/:id" element={<YaziDetay/>} />
 
         </Routes>
         {!FooterYok && <Footer />}
