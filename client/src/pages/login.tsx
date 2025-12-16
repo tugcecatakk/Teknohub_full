@@ -5,6 +5,7 @@ import {Card,CardContent} from "../components/cardd";
 import {Link,useNavigate} from "react-router-dom";
 import {Mail,Lock,ArrowRight} from "lucide-react";
 import {useState} from "react";
+import{ supabase } from "../supabase";
 
 const Login =() =>{
     
@@ -13,19 +14,36 @@ const Login =() =>{
         email:"",
         password:""
     });
-    const handleSubmit=(e: React.FormEvent) => {
-        e.preventDefault();
-        alert("Giriş başarılı.")
-        setTimeout(()=>{
-            navigate("/profilim");
-        },1000);
-    };
+   
+    const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const { data, error } = await supabase
+    .from("kullanicilar")
+    .select("*")
+    .eq("email", formData.email)
+    .eq("sifre", formData.password)
+    .single();
+
+  if (error || !data) {
+    alert("Email veya şifre hatalı!");
+    return;
+  }
+
+ 
+  localStorage.setItem("user", JSON.stringify(data));
+
+  alert("Giriş başarılı!");
+  navigate("/");
+};
+
+    
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setFormData(prev=>({... prev, [e.target.name]: e.target.value}));
     };
     return(
         <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      {/* Background Effects */}
+      
       <div className="absolute inset-0 gradient-primary opacity-10 blur-3xl" />
       
       <Card className="glass-card w-full max-w-md relative z-10 animate-fade-in">
@@ -101,7 +119,7 @@ const Login =() =>{
      
           <p className="text-center text-sm text-muted-foreground mt-6">
             Hesabınız yok mu?{" "}
-            <Link to="/kayıtol" className="text-primary hover:underline font-medium">
+            <Link to="/kayitol" className="text-primary hover:underline font-medium">
               Kayıt Olun
             </Link>
           </p>

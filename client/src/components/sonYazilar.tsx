@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Heart, MessageCircle } from 'lucide-react';
 interface SonYazilarProps {
+
+    id:string;
     baslik: string;
     icerik: string;
     olusturulma_tarihi: string;
