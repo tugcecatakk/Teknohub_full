@@ -1,7 +1,115 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 30 50% 97%;
+    --foreground: 30 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 40% 10%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 60% 95%;
+    --secondary-foreground: 30 40% 10%;
+
+    --muted: 30 50% 93%;
+    --muted-foreground: 30 20% 40%;
+
+    --accent: 340 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 30% 88%;
+    --input: 30 30% 88%;
+    --ring: 25 95% 53%;
+
+    --radius: 1rem;
+
+    /* Gradient colors */
+    --gradient-from: 25 95% 53%;
+    --gradient-via: 15 90% 55%;
+    --gradient-to: 340 85% 60%;
+  }
+
+  .light {
+    --background: 30 50% 97%;
+    --foreground: 30 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 40% 10%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 60% 95%;
+    --secondary-foreground: 30 40% 10%;
+
+    --muted: 30 50% 93%;
+    --muted-foreground: 30 20% 40%;
+
+    --accent: 340 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 30% 88%;
+    --input: 30 30% 88%;
+    --ring: 25 95% 53%;
+
+    --gradient-from: 25 95% 53%;
+    --gradient-via: 15 90% 55%;
+    --gradient-to: 340 85% 60%;
+  }
 }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--gradient-from)), hsl(var(--gradient-via)), hsl(var(--gradient-to)));
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--gradient-from)), hsl(var(--gradient-to)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: hsl(var(--card) / 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+}
+
