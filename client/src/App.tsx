@@ -2,12 +2,16 @@ import React from 'react'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import Home from './pages/home'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import About from './pages/about'
 import Login from './pages/login'
+import AdminLogin from './pages/adminLogin'
 import KayıtOl from './pages/kayıtol'
 import Contact from './pages/contact'
 import Admin from './pages/admin'
+import Categories from './pages/kategoriler'
+import KategoriDetay from './pages/kategoridetay'
+import YaziDetay from './pages/yazıdetay'
 
 export default function App() {
   try {
@@ -18,9 +22,14 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/kayıtol" element={<KayıtOl />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path ="/categories" element={<Categories />}/>
+        <Route path="/category/:slug" element={<KategoriDetay />} />
+        <Route path="/yazi/:id" element={<YaziDetay/>} />
+          
         </Routes>
         <Footer />
       </BrowserRouter>
