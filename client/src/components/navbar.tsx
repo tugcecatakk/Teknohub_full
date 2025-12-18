@@ -34,11 +34,15 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState<any>(null);
+
+  // Admin sayfasında mı kontrolü
+  const isAdminPage = location.pathname === '/admin';
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -69,6 +73,7 @@ const Navbar = () => {
         <Link to="/categories">Kategoriler</Link>
         <Link to="/about">Hakkımızda</Link>
         <Link to="/contact">İletişim</Link>
+        <Link to="/admin-login" className="text-orange-600 hover:text-orange-800">Admin</Link>
       </div>
 
      
@@ -86,7 +91,7 @@ const Navbar = () => {
             onClick={handleLogout}
             className="text-red-500 hover:underline"
           >
-            Çıkış Yap
+            {isAdminPage ? "Admin Çıkışı" : "Çıkış Yap"}
           </button>
         </div>
       ) : (
