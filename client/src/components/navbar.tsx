@@ -20,17 +20,17 @@ const Navbar = () => {
   };
 
   return (
-    <div className='fixed top-0 bg-[#faf8f5] bg-opacity-95 backdrop-blur-sm h-20 w-full 
-      flex items-center justify-between border-b border-gray-400 rounded-md shadow-sm z-50'>
+    <div className='fixed top-0 bg-[#faf8f5] bg-opacity-95 backdrop-blur-sm h-auto md:h-20 w-full 
+      flex flex-col md:flex-row items-center justify-between border-b border-gray-400 rounded-md shadow-sm z-50 py-2 md:py-0 transition-all duration-300'>
 
-      <div className='ml-3 text-3xl'>
+      <div className=' text-3xl mb-2 md:mb-0 md:ml-3'>
         <h1 className='font-serif bg-gradient-to-r from-orange-500 to-pink-500 
           bg-clip-text text-transparent'>
           TeknoHub
         </h1>
       </div>
 
-      <div className='font-sans text-md space-x-10'>
+      <div className='font-sans text-sm md:text-md flex gap-4 md:gap-10 mb-2 md:mb-0'>
         <Link to="/">Anasayfa</Link>
         <Link to="/categories">Kategoriler</Link>
         <Link to="/about">Hakkımızda</Link>
@@ -39,12 +39,12 @@ const Navbar = () => {
 
      
       {user ? (
-        <div className="flex items-center space-x-4 mr-4">
+        <div className="flex items-center space-x-4 md:mr-4">
          
           <img
             src={user.image } 
             alt="avatar"
-            className="w-10 h-10 rounded-full border"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full border"
           />
           <span className="text-sm font-semibold text-gray-800">
             {user.kullanici_adi }
@@ -60,12 +60,12 @@ const Navbar = () => {
         </div>
       ) : (
         
-        <div className='space-x-4 mr-4'>
-          <Link to="/login">Giriş Yap</Link>
+        <div className='flex gap-4 md:mr-4 items-center'>
+          <Link to="/login" className="text-sm md:text-base hover:text-orange-500">Giriş Yap</Link>
           <Link
             to="/kayitol"
             className='bg-gradient-to-r from-orange-500 to-pink-500 
-            text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform'
+            text-white px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base rounded-2xl hover:scale-105 transition-transform'
           >
             Kayıt Ol
           </Link>

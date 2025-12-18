@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-slot": "^1.2.3",
     "@supabase/supabase-js": "^2.86.0",

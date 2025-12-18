@@ -119,7 +119,7 @@ const KategoriDetay = () => {
           <p className="text-lg text-muted-foreground max-w-3xl">
             {category?.aciklama ?? "Bu kategoriye ait yazılar listeleniyor."}
           </p>
-          <div className="flex gap-3 mb-8">
+          <div className=" flex flex-wrap gap-3 mb-8">
 
 
 
