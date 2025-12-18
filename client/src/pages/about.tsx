@@ -84,7 +84,7 @@ const About = () => {
     <div className='pb-32 max-w-4xl mx-auto px-6'>
         {/* Hikayem Başlık */}
         <div className='text-center mb-12'>
-            <h1 className='text-4xl font-serif mb-4'>Hikayem</h1>
+            <h1 className='text-4xl font-serif mb-4'>Hikayemiz</h1>
             <p className='text-xl text-zinc-600 font-serif'>Tasarım ve teknoloji tutkusu ile başlayan yolculuğum</p>
         </div>
         
@@ -92,11 +92,11 @@ const About = () => {
         <div className='grid grid-cols-1 lg:grid-cols-1 gap-8 mb-16'>
             <div className='bg-white rounded-xl p-8 shadow-sm mx-auto max-w-4xl'>
                 <div className='space-y-6 text-zinc-500 leading-relaxed'>
-                    <p>Web tasarımı ile tanışmam, üniversitede grafik tasarım dersi alırken oldu. İlk HTML kodlarımı yazdığım an, hem tasarımcı hem de geliştirici olabileceğimi fark ettim. O günden bu yana, bu iki dünyayı birleştirmeye çalışıyorum.</p>
+                    <p>Web tasarımıyla tanışmamız, üniversite yıllarında aldığımız grafik tasarım derslerine dayanıyor. İlk HTML kodlarımızı yazdığımız o an; hem tasarımcı hem de geliştirici kimliğini aynı potada eritebileceğimizi fark ettik. O günden bu yana, bu iki dünyayı kusursuz bir şekilde birleştirmek için çalışıyoruz.</p>
                     
-                    <p>2015 yılında başladığım blog yolculuğum, öğrendiğim her şeyi paylaşma isteğimden doğdu. Zamanla küçük bir topluluk oluşturduk ve birlikte büyüdük. Her yazımda, okuyucularıma değer katmayı ve onları ilham vermeyi amaçlıyorum.</p>
+                    <p>2015 yılında başlayan blog yolculuğumuz, öğrendiğimiz her bilgiyi paylaşma tutkumuzdan doğdu. Zamanla paylaşımlarımız etrafında kenetlenen küçük bir topluluk oluşturduk ve bu yolda birlikte büyüdük. Her yazımızda okuyucularımıza değer katmayı ve onlara ilham vermeyi kendimize görev ediniyoruz.</p>
                     
-                    <p>Bugün, Modern Blog'da teknoloji, tasarım ve yazılım geliştirme konularında içerikler üretiyorum. Amacım, karmaşık kavramları anlaşılır hale getirmek ve herkesin bu güzel dünyaya dahil olmasını sağlamak.</p>
+                    <p>Bugün, Modern Blog çatısı altında teknoloji, tasarım ve yazılım geliştirme konularında içerikler üretiyoruz. En büyük amacımız; karmaşık kavramları herkes için anlaşılır hale getirmek ve merak duyan herkesin bu güzel dünyaya dahil olmasını sağlamak.</p>
                 </div>
             </div>
         </div>
