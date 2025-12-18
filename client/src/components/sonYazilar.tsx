@@ -29,11 +29,7 @@ useEffect(()=>{
   return (
     <div className='flex flex-row justify-center items-center mb-10'>
  {yazilar.slice(0,3).map((yazi)=>(
-<<<<<<< HEAD
             <div key={yazi.id} className='w-1/3 m-5 rounded-xl bg-white  flex flex-col'>
- <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=600&fit=crop" className='rounded-t-xl h-40 w-full object-cover' />
-=======
-            <div key={yazi.olusturulma_tarihi} className='w-1/3 m-5 rounded-xl bg-white  flex flex-col'>
  <img 
     src={yazi.image}
     alt={yazi.baslik}
@@ -43,7 +39,6 @@ useEffect(()=>{
         e.currentTarget.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=600&fit=crop";
     }}
 />
->>>>>>> 321fe5c446c042f4747f9a1d0b2158ecf66c770f
     <div className='p-3 flex-1 flex flex-col'>
         <h2 className='text-xl font-serif mb-2 line-clamp-2'>{yazi.baslik}</h2>
         <p className='text-sm text-gray-600 mb-3 flex-1 line-clamp-4 overflow-hidden'>{yazi.icerik}</p>

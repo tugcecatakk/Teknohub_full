@@ -98,12 +98,14 @@ const Login =() =>{
 
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" className="rounded" />
-                <span className="text-muted-foreground">Beni Hatırla</span>
               </label>
-              <a href="#" className="text-primary hover:underline">
+              <Link 
+                to="/sifremi-unuttum" 
+                className="text-primary hover:underline font-medium"
+              >
                 Şifremi Unuttum
-              </a>
+              </Link>
+             
             </div>
 
             <Button type="submit" className="w-full gradient-primary">

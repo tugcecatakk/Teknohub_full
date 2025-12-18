@@ -59,8 +59,23 @@ const YaziDetay = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!id) return;
+
+    const goruntulemeArttir = async () => {
+       const { error } = await supabase.rpc('goruntuleme_arttir', { 
+        yazi_id: Number(id) 
+      });
+
+      if (error) console.error("Görüntüleme artırma hatası:", error);
+    };
+
+    goruntulemeArttir();
+  }, [id]);
+
   
   useEffect(() => {
+    
     const verileriGetir = async () => {
       
       const { data: yaziVerisi } = await supabase
@@ -116,6 +131,8 @@ if (yorumError) {
 
     verileriGetir();
   }, [id,kullanici?.id]);
+
+  
 
  
   useEffect(() => {
@@ -234,6 +251,8 @@ else {
     }
  
   };
+
+  
 
  
   if (yükleniyor) return <p>Yükleniyor...</p>;
