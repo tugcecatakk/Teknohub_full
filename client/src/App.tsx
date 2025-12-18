@@ -45,3 +45,12 @@ function AppLayout(){
 
   )
 }
+function App() {
+  return (
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
+  );
+}
+
+export default App;
