@@ -2,35 +2,29 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Trash2 } from 'lucide-react';
 
-
-
-interface KullaniciProps { 
+interface KullaniciProps {
     id: number;
     kullanici_adi: string;
     email: string;
     rol: string;
-    image?: string; 
-    
+    image?: string;
 }
 
-interface YazarProps { 
+interface YazarProps {
     id: number;
     kullanici_adi: string;
-    image?: string; 
+    image?: string;
     bio?: string;
     uzmanlik_alani?: string;
-    
 }
 
-interface YaziProps { 
+interface YaziProps {
     id: number;
     baslik: string;
     icerik: string;
-    image_url?: string; 
-    goruntuleme?: number; 
-    
-  
-    yazar_id: number | { id: number; kullanici_adi: string;  }; 
+    image_url?: string;
+    goruntuleme?: number;
+    yazar_id: number | { id: number; kullanici_adi: string; };
     olusturulma_tarihi: string;
 }
 
@@ -46,7 +40,6 @@ const Admin = () => {
     
     const [loading, setLoading] = useState(true);
     
-
     const [showYaziForm, setShowYaziForm] = useState(false);
     const [yaziForm, setYaziForm] = useState({
         baslik: '',
@@ -324,7 +317,7 @@ const Admin = () => {
                    
                     {currentYazar.image ? (
                         <img 
-                            src={currentYazar.image} 
+                            src={currentKullanici.image} 
                             alt="Profil Resmi" 
                             className='w-32 h-32 rounded-full object-cover' 
                         />
@@ -341,29 +334,30 @@ const Admin = () => {
                         <span className='text-sm text-gray-600'>Rol: {currentKullanici.rol}</span>
                         {currentYazar.bio && <span className='text-sm text-gray-600 mt-1'>Bio: {currentYazar.bio}</span>}
                         {currentYazar.uzmanlik_alani && <span className='text-sm text-gray-600'>Uzmanlık: {currentYazar.uzmanlik_alani}</span>}
-                       
                         <br />
                         <div className='flex flex-row space-x-4'>
                             <div className='flex flex-col'>
-                                
                                 <span className='text-orange-400 font-bold text-2xl'>{kullaniciYazilari.length}</span>
                                 <span>Yazı</span>
                             </div>
                             <div className='flex flex-col'>
-                               
                                 <span className='text-blue-500 font-bold text-2xl'>{toplamOkuyucuSayisi.toLocaleString()}</span>
                                 <span>Okuyucu</span>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
-                
+                <div className='flex items-center'>
+                    <button
+                        onClick={handleLogout}
+                        className='bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors'
+                    >
+                        <span>Çıkış Yap</span>
+                    </button>
+                </div>
             </div>
 
-            
             <div className='mx-16 mt-10 space-y-8'>
-              
                 <div className='flex justify-between items-center'>
                     <h2 className='text-2xl font-bold text-gray-800'>Yazılarım</h2>
                     <button 

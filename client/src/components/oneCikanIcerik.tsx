@@ -22,7 +22,7 @@ const OneCikanIcerik = () => {
     const [begeniYukleniyor, setBegeniYukleniyor] = useState<boolean>(false);
 
     useEffect(()=>{
-        // Login durumunu kontrol et
+        
         const userStr = localStorage.getItem('user');
         if (userStr) {
             setKullanici(JSON.parse(userStr));
@@ -41,7 +41,7 @@ const OneCikanIcerik = () => {
         });
     }, []);
     
-    // Beğeni fonksiyonu
+    
     const handleBegeni = async () => {
         if (!kullanici) {
             alert('🔒 Beğenmek için giriş yapmalısınız!');
@@ -66,7 +66,7 @@ const OneCikanIcerik = () => {
             const result = await response.json();
             
             if (response.ok) {
-                // Yerel state'i güncelle
+               
                 setYazilar(prev => 
                     prev.map((yazi, index) => 
                         index === 0 
@@ -111,20 +111,22 @@ const OneCikanIcerik = () => {
     </div>
     
 {yazilar.slice(0,1).map((yazi)=>(
-  <div key={yazi.id} className="space-y-6"> {/* Boşluk eklemek için space-y-6 ekledim */}
-    <Link to={`/yazidetay/${yazi.id}`} className="hover:opacity-80 transition-opacity">
+  <div key={yazi.id} className="space-y-6"> 
+    <Link to={`/yazi/${yazi.id}`} className="hover:opacity-80 transition-opacity">
       <h3 className='text-7xl font-serif leading-tight'>{yazi.baslik}</h3>
     </Link>
     
-    {/* İçerik Sınırlandırma Burada */}
+    
     <p className='text-xl text-gray-600 line-clamp-3'>
         {yazi.icerik}
     </p>
 
     <div className='flex flex-row space-x-3 items-center'>
-        <img src={yazi.image} alt="Yazar" className='w-12 h-12 rounded-full object-cover' />
+        <div className='w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center text-white font-semibold text-lg'>
+            {yazi.yazar_id?.kullanici_adi?.charAt(0).toUpperCase() || 'U'}
+        </div>
         <div>
-            <h1 className='text-lg font-semibold'>{yazi.yazar_id.kullanici_adi}</h1>
+            <h1 className='text-lg font-semibold'>{yazi.yazar_id?.kullanici_adi || 'Bilinmeyen Yazar'}</h1>
             <p className='text-sm text-gray-500'>Web Tasarımcı</p>
         </div>
     </div>
@@ -133,7 +135,7 @@ const OneCikanIcerik = () => {
 
     
     <div className='flex flex-row justify-between items-center w-72'>
-       <Link to={`/yazidetay/${yazilar[0]?.id || ''}`}>
+       <Link to={`/yazi/${yazilar[0]?.id || ''}`}>
            <button className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform flex items-center space-x-2'>
                <span>Okumaya Başla</span>
                <ArrowRight size={18} />
