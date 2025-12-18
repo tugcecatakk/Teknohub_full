@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -6,24 +7,41 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [user, setUser] = useState<any>(null);
-
-  // Admin sayfasında mı kontrolü
   const isAdminPage = location.pathname === '/admin';
 
-  useEffect(() => {
+ 
+  const checkUser = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
     }
+  };
+
+  useEffect(() => {
+    
+    checkUser();
+
+  
+    window.addEventListener('userChange', checkUser);
+
+   
+    return () => {
+      window.removeEventListener('userChange', checkUser);
+    };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
+  
+    window.dispatchEvent(new Event("userChange")); 
     navigate("/");
   };
 
   return (
+  
     <div className='fixed top-0 bg-[#faf8f5] bg-opacity-95 backdrop-blur-sm h-auto md:h-20 w-full 
       flex flex-col md:flex-row items-center justify-between border-b border-gray-400 rounded-md shadow-sm z-50 py-2 md:py-0 transition-all duration-300'>
 
@@ -39,7 +57,19 @@ const Navbar = () => {
         <Link to="/categories">Kategoriler</Link>
         <Link to="/about">Hakkımızda</Link>
         <Link to="/contact">İletişim</Link>
-        <Link to="/admin-login" className="text-orange-600 hover:text-orange-800">Admin</Link>
+
+        {!user && (
+            <Link to="/admin-login" className="text-orange-600 hover:text-orange-800">
+                Admin
+            </Link>
+        )}
+
+        {user && user.rol === 'yazar' && (
+            <Link to="/admin" className="text-orange-600 font-bold hover:text-orange-800 border-b-2 border-orange-200">
+                Admin Paneli
+            </Link>
+        )}
+        
       </div>
 
      
@@ -47,7 +77,7 @@ const Navbar = () => {
         <div className="flex items-center space-x-4 md:mr-4">
          
           <img
-            src={user.image } 
+            src={user.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} // Resim yoksa default ikon
             alt="avatar"
             className="w-8 h-8 md:w-10 md:h-10 rounded-full border"
           />

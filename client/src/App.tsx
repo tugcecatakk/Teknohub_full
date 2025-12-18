@@ -10,7 +10,7 @@ import KayıtOl from './pages/kayıtol'
 import Categories from './pages/kategoriler'
 import KategoriDetay from './pages/kategoridetay'
 import YaziDetay from './pages/yazıdetay'
-import { Contact } from 'lucide-react'
+import  Contact  from './pages/contact'
 import Admin from './pages/admin'
 import SifremiUnuttum from './pages/SifremUnuttum'
 
@@ -18,9 +18,9 @@ import SifremiUnuttum from './pages/SifremUnuttum'
 
 function AppLayout(){
   const location =useLocation();
-  const NavbarYok=location.pathname==="/login" || location.pathname==="/kayitol" || location.pathname==="/sifremi-unuttum" ;
+  const NavbarYok=location.pathname==="/login" || location.pathname==="/kayitol" || location.pathname==="/sifremi-unuttum"|| location.pathname==="/admin-login" ;
   const FooterYok=location.pathname==="/login" || location.pathname==="/kayitol" || location.pathname==="/categories" || location.pathname.startsWith("/category/") ||
-    location.pathname.startsWith("/yazi/")  || location.pathname==="/sifremi-unuttum";
+    location.pathname.startsWith("/yazi/")  || location.pathname==="/sifremi-unuttum" || location.pathname==="/admin-login";
 
   return(
     <>

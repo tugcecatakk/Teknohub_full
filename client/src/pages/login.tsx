@@ -30,12 +30,13 @@ const Login =() =>{
     return;
   }
 
-  // Kullanıcı bilgilerini localStorage'a kaydet
+
   localStorage.setItem("user", JSON.stringify(data));
+  window.dispatchEvent(new Event("userChange"));
 
   alert("Giriş başarılı!");
 
-  // Eğer kullanıcının rolü "yazar" ise admin sayfasına yönlendir
+
   if (data.rol === "yazar") {
     navigate("/admin");
   } else {
