@@ -56,7 +56,7 @@ const Navbar = () => {
         <Link to="/">Anasayfa</Link>
         <Link to="/categories">Kategoriler</Link>
         <Link to="/about">Hakkımızda</Link>
-        <Link to="/contact">İletişim</Link>
+        
 
         {!user && (
             <Link to="/admin-login" className="text-orange-600 hover:text-orange-800">

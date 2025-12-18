@@ -347,14 +347,7 @@ const Admin = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex items-center'>
-                    <button
-                        onClick={handleLogout}
-                        className='bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors'
-                    >
-                        <span>Çıkış Yap</span>
-                    </button>
-                </div>
+               
             </div>
 
             <div className='mx-16 mt-10 space-y-8'>
