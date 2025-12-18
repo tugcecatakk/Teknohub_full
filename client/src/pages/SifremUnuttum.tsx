@@ -13,8 +13,7 @@ const SifremiUnuttum = () => {
     const SERVICE_ID = "service_x5p622w";  
     const TEMPLATE_ID = "template_594hs0d"; 
     const PUBLIC_KEY = "Udi5eIG0x9JJy7PHq";   
-    // ----------------------------------------
-
+    
    
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -28,13 +27,13 @@ const SifremiUnuttum = () => {
         return Math.floor(100000 + Math.random() * 900000).toString();
     };
 
-    // 1. ADIM: KODU ÜRET, KAYDET VE MAİL AT
+    
     const handleSendCode = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // A. Kullanıcı var mı kontrol et
+          
             const { data: user, error } = await supabase
                 .from("kullanicilar")
                 .select("id, kullanici_adi")
@@ -47,10 +46,10 @@ const SifremiUnuttum = () => {
                 return;
             }
 
-            // B. 6 Haneli kod üret
+            
             const code = generateCode();
 
-            // C. Kodu veritabanına kaydet (reset_kod sütununa)
+           
             const { error: updateError } = await supabase
                 .from("kullanicilar")
                 .update({ reset_kod: code })
@@ -58,17 +57,14 @@ const SifremiUnuttum = () => {
 
             if (updateError) throw updateError;
 
-            // D. EmailJS ile mail gönder
+          
             const templateParams = {
-                kullanici_adi: user.kullanici_adi, // Şablondaki {{kullanici_adi}}
-                kod: code,                         // Şablondaki {{kod}}
-                user_email: email                  // Mailin gideceği adres (EmailJS otomatik algılar genelde ama settings'den "To Email"i bu değişken yapmalısın veya Reply To olarak kullanır)
+                kullanici_adi: user.kullanici_adi, 
+                kod: code,                        
+                user_email: email                  
             };
 
-            // Not: EmailJS template ayarlarında "To Email" kısmına {{user_email}} yazarsan veya
-            // send fonksiyonunun 3. parametresi form verisi değilse direkt alıcıyı template içinde tanımlaman gerekebilir.
-            // En kolayı: EmailJS Template ayarlarında "To Email" alanına dinamik değişken vermek yerine,
-            // send metodunda form referansı kullanmaktır. Ama manuel obje yolluyorsak, EmailJS panelinde "To Email" kısmına {{user_email}} yazmalısın.
+            
             
             await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
 
@@ -83,13 +79,13 @@ const SifremiUnuttum = () => {
         }
     };
 
-    // 2. ADIM: KODU DOĞRULA
+    
     const handleVerifyCode = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // Veritabanındaki kodu çek
+          
             const { data, error } = await supabase
                 .from("kullanicilar")
                 .select("reset_kod")
@@ -101,9 +97,9 @@ const SifremiUnuttum = () => {
                 return;
             }
 
-            // Girilen kod ile veritabanındaki kodu karşılaştır
+            
             if (data.reset_kod === resetKod) {
-                setStep(3); // Kod doğru, şifre değiştirme ekranına geç
+                setStep(3); 
             } else {
                 alert("Girdiğiniz kod hatalı!");
             }
@@ -114,18 +110,18 @@ const SifremiUnuttum = () => {
         }
     };
 
-    // 3. ADIM: ŞİFREYİ GÜNCELLE
+    
     const handleResetPassword = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // Şifreyi güncelle ve kodu sil (güvenlik için reset_kod null yapılır)
+           
             const { error } = await supabase
                 .from("kullanicilar")
                 .update({ 
                     sifre: newPassword,
-                    reset_kod: null // Kod kullanıldı, artık geçersiz olsun
+                    reset_kod: null 
                 })
                 .eq("email", email);
 
@@ -161,7 +157,7 @@ const SifremiUnuttum = () => {
                         </p>
                     </div>
 
-                    {/* --- STEP 1: EMAIL GİRİŞ --- */}
+                   
                     {step === 1 && (
                         <form onSubmit={handleSendCode} className="space-y-6">
                             <div className="space-y-2">
@@ -185,7 +181,7 @@ const SifremiUnuttum = () => {
                         </form>
                     )}
 
-                    {/* --- STEP 2: KOD DOĞRULAMA --- */}
+                  
                     {step === 2 && (
                         <form onSubmit={handleVerifyCode} className="space-y-6">
                             <div className="space-y-2">
@@ -217,7 +213,7 @@ const SifremiUnuttum = () => {
                         </form>
                     )}
 
-                    {/* --- STEP 3: YENİ ŞİFRE --- */}
+                   
                     {step === 3 && (
                         <form onSubmit={handleResetPassword} className="space-y-6">
                             <div className="space-y-2">
