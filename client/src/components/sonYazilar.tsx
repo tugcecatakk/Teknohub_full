@@ -25,13 +25,13 @@ const [kullanici, setKullanici] = useState<any>(null);
 const [begeniYukleniyor, setBegeniYukleniyor] = useState<number | null>(null);
 
 useEffect(()=>{
-    // Login durumunu kontrol et
+    
     const userStr = localStorage.getItem('user');
     if (userStr) {
         setKullanici(JSON.parse(userStr));
     }
     
-    // Yazıları yükle
+    
     const apiUrl = kategoriId 
         ? `http://localhost:3001/api/icerikler?kategori_id=${kategoriId}`
         : 'http://localhost:3001/api/icerikler';
@@ -45,9 +45,8 @@ useEffect(()=>{
         setYazilar(data);
     })
     .catch(err => console.error('İçerikler çekilirken hata oluştu:', err));
-}, [kategoriId]); // kategoriId değiştiğinde yeniden fetch yap
+}, [kategoriId]); 
 
-// Beğeni fonksiyonu
 const handleBegeni = async (yaziId: number) => {
     if (!kullanici) {
         alert('🔒 Beğenmek için giriş yapmalısınız!');
@@ -70,7 +69,6 @@ const handleBegeni = async (yaziId: number) => {
         const result = await response.json();
         
         if (response.ok) {
-            // Yerel state'i güncelle
             setYazilar(prev => 
                 prev.map(yazi => 
                     yazi.id === yaziId 
@@ -103,7 +101,7 @@ const handleBegeni = async (yaziId: number) => {
     }}
 />
     <div className='p-3 flex-1 flex flex-col'>
-        <Link to={`/yazidetay/${yazi.id}`} className='hover:text-blue-600 transition-colors'>
+        <Link to={`/yazi/${yazi.id}`} className='hover:text-blue-600 transition-colors'>
             <h2 className='text-xl font-serif mb-2 line-clamp-2'>{yazi.baslik}</h2>
         </Link>
         <p className='text-sm text-gray-600 mb-3 flex-1 line-clamp-4 overflow-hidden'>{yazi.icerik}</p>
@@ -132,7 +130,7 @@ const handleBegeni = async (yaziId: number) => {
                 </div>
       
         <div className=''>
-            <Link to={`/yazidetay/${yazi.id}`}>
+            <Link to={`/yazi/${yazi.id}`}>
                 <button className='rounded-xl py-2 px-3 hover:bg-pink-600 hover:text-white flex items-center space-x-1'>
                     <span>Oku</span>
                     <ArrowRight size={16} />

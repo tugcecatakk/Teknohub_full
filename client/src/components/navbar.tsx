@@ -41,7 +41,7 @@ const Navbar = () => {
   const location = useLocation();
   const [user, setUser] = useState<any>(null);
 
-  // Admin sayfasında mı kontrolü
+  
   const isAdminPage = location.pathname === '/admin';
 
   useEffect(() => {
@@ -72,20 +72,13 @@ const Navbar = () => {
         <Link to="/">Anasayfa</Link>
         <Link to="/categories">Kategoriler</Link>
         <Link to="/about">Hakkımızda</Link>
-        <Link to="/contact">İletişim</Link>
+       
         <Link to="/admin-login" className="text-orange-600 hover:text-orange-800">Admin</Link>
       </div>
 
      
       {user ? (
         <div className="flex items-center space-x-4 mr-4">
-         
-          <img
-            src={user.image } 
-            alt="avatar"
-            className="w-10 h-10 rounded-full border"
-          />
-
          
           <button
             onClick={handleLogout}
