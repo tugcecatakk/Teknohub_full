@@ -5,10 +5,10 @@ import Home from './pages/home'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import About from './pages/about'
 import Login from './pages/login'
+import AdminLogin from './pages/adminLogin'
 import KayıtOl from './pages/kayıtol'
 import Categories from './pages/kategoriler'
 import KategoriDetay from './pages/kategoridetay'
-import YazıDetay from './pages/yazıdetay'
 import YaziDetay from './pages/yazıdetay'
 import { Contact } from 'lucide-react'
 import Admin from './pages/admin'
@@ -29,11 +29,13 @@ function AppLayout(){
         <Route path="/" element={<Home />}/>
         <Route path ="about" element={<About />}/>
         <Route path ="login" element={<Login />}/>
+         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path ="kayitol" element={<KayıtOl />}/>
         <Route path ="/categories" element={<Categories />}/>
         <Route path="/category/:slug" element={<KategoriDetay />} />
         <Route path="/yazi/:id" element={<YaziDetay/>} />
          <Route path ="contact" element={<Contact />}/>
+         <Route path="/admin" element={<Admin />} />
          <Route path="/sifremi-unuttum" element={<SifremiUnuttum />} />
 
         </Routes>
@@ -41,12 +43,5 @@ function AppLayout(){
 
     </>
 
-  )
-}
-export default function App(){
-  return(
-    <BrowserRouter>
-    <AppLayout />
-    </BrowserRouter>
   )
 }

@@ -13,6 +13,7 @@ interface Kategori{
 const Home = () => {
 
     const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
+    const [selectedKategori, setSelectedKategori] = useState<number | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() =>{
@@ -48,13 +49,36 @@ const Home = () => {
     <div className='flex flex-row border border-gray-300  my-20 h-40 space-x-3 items-center'>
         <TrendingUp color='#f97901'/>
        <ul className='flex flex-row space-x-3  ' >
+        {/* Tümü Seçeneği */}
+        <li 
+            className={`rounded-xl p-2 cursor-pointer transition-colors ${
+                selectedKategori === null ? 'bg-pink-600 text-white' : 'hover:bg-pink-600 hover:text-white'
+            }`}
+            onClick={() => {
+                console.log('Tümü seçildi');
+                setSelectedKategori(null);
+            }}
+        >
+            Tümü
+        </li>
         {kategoriler.map((kategori)=>(
-            <li className='rounded-xl p-2 hover:bg-pink-600 hover:text-white '>{kategori.ad}</li>
+            <li 
+                key={kategori.id}
+                className={`rounded-xl p-2 cursor-pointer transition-colors ${
+                    selectedKategori === kategori.id ? 'bg-pink-600 text-white' : 'hover:bg-pink-600 hover:text-white'
+                }`}
+                onClick={() => {
+                    console.log('Kategori seçildi:', kategori.id);
+                    setSelectedKategori(kategori.id);
+                }}
+            >
+                {kategori.ad}
+            </li>
         ))}
        </ul>
     </div>
     <div>
-    <SonYazilar />
+    <SonYazilar key={selectedKategori || 'all'} kategoriId={selectedKategori} />
 
     </div>
 
