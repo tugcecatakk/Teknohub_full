@@ -12,7 +12,7 @@ const AdminLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    
+   
     useEffect(() => {
         const userString = localStorage.getItem('user');
         if (userString) {
@@ -64,16 +64,18 @@ const AdminLogin = () => {
             }
 
             if (data.success && data.user) {
-                // Sadece yazar rolündeki kullanıcılar admin paneline erişebilir
+               
                 if (data.user.rol !== 'yazar') {
                     setError('Bu panel sadece yazarlar için erişilebilir!');
                     setLoading(false);
                     return;
                 }
+                
 
-                
+               
                 localStorage.setItem('user', JSON.stringify(data.user));
-                
+                window.dispatchEvent(new Event("userChange"));
+               
                 navigate('/admin');
             } else {
                 setError(data.message || 'Giriş yapılamadı');
@@ -89,7 +91,7 @@ const AdminLogin = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-orange-50 to-pink-50 flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                
+               
                 <div className="text-center mb-8">
                     <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
                         <Lock className="w-8 h-8 text-white" />
@@ -98,17 +100,17 @@ const AdminLogin = () => {
                     <p className="text-gray-600">Yazar paneline erişmek için giriş yapın</p>
                 </div>
 
-                
+               
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        
+                      
                         {error && (
                             <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-red-700 text-sm">
                                 {error}
                             </div>
                         )}
 
-                        
+                     
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                                 Email
@@ -130,7 +132,7 @@ const AdminLogin = () => {
                             </div>
                         </div>
 
-                      
+                    
                         <div>
                             <label htmlFor="sifre" className="block text-sm font-medium text-gray-700 mb-2">
                                 Şifre
@@ -181,7 +183,7 @@ const AdminLogin = () => {
                         </button>
                     </form>
 
-                    
+                 
                     <div className="mt-6 text-center space-y-3">
                         <Link
                             to="/login"

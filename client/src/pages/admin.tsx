@@ -51,17 +51,20 @@ const Admin = () => {
     const [formYukleniyor, setFormYukleniyor] = useState(false);
     const [kategoriler, setKategoriler] = useState<any[]>([]);
 
+   
     const handleLogout = () => {
         localStorage.removeItem('user');
         alert('Çıkış yapıldı!');
         navigate('/admin-login');
     };
 
+   
     useEffect(() => {
         const userString = localStorage.getItem('user');
         console.log('localStorage user:', userString);
         
         if (!userString) {
+            
             console.log('Kullanıcı giriş yapmamış, admin login sayfasına yönlendiriliyor');
             navigate('/admin-login');
             return;
@@ -69,7 +72,7 @@ const Admin = () => {
 
         const user = JSON.parse(userString);
         console.log('Parse edilen user:', user);
-        
+      
         if (user.rol !== "yazar") {
             console.log('Kullanıcı rolü yazar değil:', user.rol);
             alert("Bu sayfaya erişim yetkiniz yok! Lütfen yazar hesabınızla giriş yapın.");
@@ -78,15 +81,17 @@ const Admin = () => {
         }
 
         console.log('Kullanıcı bilgileri set ediliyor:', user);
+      
         setCurrentKullanici({
             id: user.id,
             kullanici_adi: user.kullanici_adi,
             email: user.email,
             rol: user.rol,
-            image: user.image
+            image: user.image 
         });
         setOturumAcikYazarId(user.id);
         
+       
         fetch(`http://localhost:3001/api/yazarlar/${user.id}`)
             .then(res => {
                 console.log('Yazar API response status:', res.status);
@@ -109,14 +114,17 @@ const Admin = () => {
                 alert('Yazar bilgileri yüklenemedi. Lütfen sayfayı yenileyin.');
             });
         
+        
         fetch('http://localhost:3001/api/kategoriler')
             .then(res => res.json())
             .then(data => setKategoriler(data))
             .catch(err => console.error('Kategoriler yüklenirken hata:', err));
     }, [navigate]);
 
+    
     useEffect(() => {
         const fetchData = async () => {
+          
             if (!oturumAcikYazarId) {
                 console.log('oturumAcikYazarId henüz yüklenmedi, bekleniyor...');
                 return;
@@ -125,6 +133,7 @@ const Admin = () => {
             console.log('Veri çekme işlemi başlıyor, kullanıcı ID:', oturumAcikYazarId);
             setLoading(true);
             try {
+               
                 console.log('İçerikler API çağrısı yapılıyor...');
                 const icerikRes = await fetch('http://localhost:3001/api/icerikler');
                 
@@ -147,6 +156,7 @@ const Admin = () => {
         fetchData();
     }, [oturumAcikYazarId]);
 
+    
     const kullaniciYazilari = useMemo(() => {
         console.log('kullaniciYazilari hesaplanıyor...');
         console.log('tumYazilar:', tumYazilar);
@@ -160,19 +170,23 @@ const Admin = () => {
         const filteredYazilar = tumYazilar.filter(yazi => {
             console.log('Yazı kontrol ediliyor:', yazi.id, 'yazar_id:', yazi.yazar_id);
             
+           
             if (typeof yazi.yazar_id === 'object' && yazi.yazar_id !== null && 'id' in yazi.yazar_id) {
+               
                 console.log('Nested yazar_id:', yazi.yazar_id.id, 'vs oturum:', oturumAcikYazarId);
                 return yazi.yazar_id.id === oturumAcikYazarId;
             } 
             
+           
             console.log('Direct yazar_id:', yazi.yazar_id, 'vs oturum:', oturumAcikYazarId);
             return yazi.yazar_id === oturumAcikYazarId;
         });
         
         console.log('Filtrelenen yazılar:', filteredYazilar);
         return filteredYazilar;
-    }, [oturumAcikYazarId, tumYazilar]);
-
+    }, [oturumAcikYazarId, tumYazilar]); 
+    
+    
     const handleYaziEkle = async (e: React.FormEvent) => {
         e.preventDefault();
         
@@ -205,6 +219,7 @@ const Admin = () => {
                 alert('✅ Yazı başarıyla eklendi!');
                 setYaziForm({ baslik: '', icerik: '', image_url: '', kategori_id: 1, slug: '' });
                 setShowYaziForm(false);
+               
                 const icerikRes = await fetch('http://localhost:3001/api/icerikler');
                 const icerikData = await icerikRes.json();
                 setTumYazilar(icerikData);
@@ -218,7 +233,8 @@ const Admin = () => {
             setFormYukleniyor(false);
         }
     };
-
+    
+   
     const handleYaziSil = async (yaziId: number, yaziBaslik: string) => {
         if (!confirm(`"${yaziBaslik}" adlı yazıyı silmek istediğinizden emin misiniz?`)) {
             return;
@@ -239,7 +255,6 @@ const Admin = () => {
             
             if (response.ok) {
                 alert('✅ Yazı başarıyla silindi!');
-
                 const icerikRes = await fetch('http://localhost:3001/api/icerikler');
                 const icerikData = await icerikRes.json();
                 setTumYazilar(icerikData);
@@ -252,16 +267,16 @@ const Admin = () => {
         }
     };
 
-    // 3. Kullanıcının tüm yazılarını göster (MEMO) 
+   
     const gosterilecekYazilar = useMemo(() => {
         console.log('gosterilecekYazilar hesaplanıyor...');
         console.log('kullaniciYazilari:', kullaniciYazilari);
         
-        // Sadece kullanıcının yazılarını döndür
+     
         return kullaniciYazilari;
     }, [kullaniciYazilari]);
     
-    // Toplam okuyucu sayısını hesapla (tüm yazıların görüntüleme sayıları toplamı)
+    
     const toplamOkuyucuSayisi = useMemo(() => {
         console.log('Okuyucu sayısı hesaplanıyor...');
         console.log('kullaniciYazilari:', kullaniciYazilari);
@@ -282,7 +297,7 @@ const Admin = () => {
         return <div className="text-center mt-32">Yükleniyor...</div>;
     }
     
-    // Kullanıcı verisi yoksa veya ID set edilmemişse
+    
     if (!currentKullanici || !currentYazar || !oturumAcikYazarId) {
         console.log('Debug - Loading state:', {
             currentKullanici: !!currentKullanici,
@@ -293,14 +308,14 @@ const Admin = () => {
     }
 
 
-    // **********************************
-    // Render Kısmı
-    // **********************************
+    
     return (
         <div className=''>
+         
             <div className='flex flex-row justify-between my-32 '>
                 <div className='flex flex-row space-x-12 mx-8 '>
-                    {currentKullanici.image ? (
+                   
+                    {currentYazar.image ? (
                         <img 
                             src={currentKullanici.image} 
                             alt="Profil Resmi" 
@@ -332,14 +347,7 @@ const Admin = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex items-center'>
-                    <button
-                        onClick={handleLogout}
-                        className='bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors'
-                    >
-                        <span>Çıkış Yap</span>
-                    </button>
-                </div>
+               
             </div>
 
             <div className='mx-16 mt-10 space-y-8'>
@@ -353,6 +361,7 @@ const Admin = () => {
                     </button>
                 </div>
 
+               
                 {showYaziForm && (
                     <div className='bg-white p-6 rounded-lg shadow-lg border border-gray-200'>
                         <h3 className='text-xl font-bold mb-4 text-gray-800'>Yeni Yazı Ekle</h3>
@@ -449,7 +458,7 @@ const Admin = () => {
                     </div>
                 )}
 
-
+               
                 <>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'>
                             {gosterilecekYazilar.map((yazi) => (
@@ -457,6 +466,7 @@ const Admin = () => {
                                     <div 
                                         className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer`}
                                     >
+                                  
                                     {yazi.image_url ? (
                                         <img 
                                             src={yazi.image_url} 
@@ -471,13 +481,16 @@ const Admin = () => {
                                         </div>
                                     )}
                                     
+                                    
                                     <div className='p-4'>
                                         <h3 className='text-xl font-bold text-gray-800 mb-3 line-clamp-2'>{yazi.baslik}</h3>
                                         <p className='text-gray-600 text-sm mb-4 line-clamp-3'>
                                             {yazi.icerik.substring(0, 150)}...
                                         </p>
                                         
+                                       
                                         <div className='flex justify-between items-center text-xs text-gray-500 mb-4'>
+                                           
                                             <span>Yazar: {
                                                 (typeof yazi.yazar_id === 'object' && yazi.yazar_id !== null && 'kullanici_adi' in yazi.yazar_id) 
                                                     ? yazi.yazar_id.kullanici_adi 
@@ -486,6 +499,7 @@ const Admin = () => {
                                             <span>{new Date(yazi.olusturulma_tarihi).toLocaleDateString('tr-TR')}</span>
                                         </div>
                                         
+                                       
                                         <div className='flex justify-center mt-4' onClick={(e) => e.preventDefault()}>
                                             <button 
                                                 onClick={(e) => {
@@ -504,8 +518,10 @@ const Admin = () => {
                                 </Link>
                             ))}
                             
+                           
                             {gosterilecekYazilar.length === 0 && (
                                 <div className='col-span-full text-center text-gray-500 py-12'>
+                                 
                                 </div>
                             )}
                         </div>
@@ -515,8 +531,6 @@ const Admin = () => {
     );
 }
 
-// Varsayılan dışa aktarma işlemi (Admin'in dışarıdan ID alması için)
-// Bu kısımla, Admin bileşenini kullanırken ID'yi iletmelisiniz: <Admin oturumAcikYazarId={1} />
-// Gerçek uygulamada, oturum açmış kullanıcının ID'sini buraya dinamik olarak vermelisiniz.
+
 
 export default Admin;

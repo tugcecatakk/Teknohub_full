@@ -1,67 +1,82 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Sayfa yenilenmemesi için Link kullanıyoruz
 
-interface Kategori{
-    id: number;
-    ad:string;
+interface Kategori {
+  id: number;
+  ad: string;
+  slug?: string; 
 }
 
 const Footer = () => {
-    const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
-  
-      useEffect(() =>{
-  fetch('http://localhost:3001/api/kategoriler')
-  .then(res =>res.json())
-  .then(data =>setKategoriler(data))
-  .catch(err => console.error('Kategoriler çekilirken hata oluştu:', err));
-  
-      }, []);
-  
+  const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/kategoriler')
+      .then((res) => res.json())
+      .then((data) => setKategoriler(data))
+      .catch((err) => console.error('Kategoriler çekilirken hata oluştu:', err));
+  }, []);
+
   return (
-    <div className='bg-[#faf8f5]'>
-    <div className=' h-80 w-full flex items-center justify-between border-t border-gray-400 rounded-md '>
-      <div>
-        <h1 className='font-serif bg-gradient-to-r from-orange-500  to-pink-500 bg-clip-text text-transparent'>TeknoHub</h1>
-        <h3>Teknoloji, tasarım ve yazılım dünyasından en güncel içerikler.</h3>
+    <footer className="bg-[#faf8f5] border-t border-gray-300 mt-auto">
+      <div className="container mx-auto px-6 py-12">
+        
+      
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+        
+          <div className="lg:col-span-1 space-y-4">
+            <h1 className="text-3xl font-serif font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent inline-block">
+              TeknoHub
+            </h1>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Teknoloji, tasarım ve yazılım dünyasından en güncel içerikleri sizlerle buluşturuyoruz.
+            </p>
+          </div>
+
+          
+          <div>
+            <h3 className="text-gray-900 font-bold mb-4 uppercase text-sm tracking-wider">Kategoriler</h3>
+            <ul className="space-y-2">
+              {kategoriler.slice(0, 5).map((kategori) => ( 
+                <li key={kategori.id}>
+                  <Link 
+                    to={`/category/${kategori.slug || kategori.id}`} 
+                    className="text-gray-600 hover:text-orange-500 transition-colors text-sm"
+                  >
+                    {kategori.ad}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          
+          
+
+          <div>
+            <h3 className="text-gray-900 font-bold mb-4 uppercase text-sm tracking-wider">Hesap</h3>
+            <ul className="space-y-2">
+              
+              <li>
+                <Link to="/admin" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Yazı Oluştur</Link>
+              </li>
+              <li>
+                <Link to="/kayitol" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Üye Ol</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      
+        <div className="border-t border-gray-200 mt-12 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <div className="flex space-x-4 mt-4 md:mt-0">
+          </div>
+        </div>
+
       </div>
-      <div>
-        <h1>Kategoriler</h1>
-        <ul>
-        {kategoriler.map((kategori) => (
-            <li key={kategori.id}>
-            <a href={`/kategori/${kategori.id}`}>{kategori.ad}</a>
-            </li>
-        ))}
-        </ul>
-      </div>
-      <div>
-        <h1>Hızlı Linkler</h1>
-        <ul>
-        <li>
-            <a href="/">Hakkımızda</a>
-        </li>
-        <li>
-            <a href="/">İletişim</a>
-        </li>
-        <li>
-            <a href="/">Profil</a>
-        </li>
-        <li>
-            <a href="/">Yazı Oluştur</a>
-        </li>
-        </ul>
-      </div>
-      <div>
-        <h1>Bülten</h1>
-        <h3>Yeni içeriklerden haberdar olun</h3>
-        <input type="text" className='border border-gray-400 rounded-lg p-2' placeholder='E-posta adresiniz' />
-        <button className='bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl hover:scale-105 transition-transform '>Abone Ol</button>
-      </div>
-    </div>
-    <div className='h-20 w-full flex items-center justify-center border-t border-gray-400 rounded-md '>
-<h3>© Tüm Hakları Saklıdır 2023 TeknoHub</h3>
-    </div>
-    </div>
-  )
-}
+    </footer>
+  );
+};
 
 export default Footer;
