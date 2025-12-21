@@ -1,19 +1,21 @@
 import { Heart, MessageCircle, Sparkles, ArrowRight } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { supabase } from "../supabase";
 
 interface OneCikanIcerikProps {
     id: number;
     baslik: string;
     icerik: string;
     begeni_sayisi: number;
+    yorum_sayisi?: number;
     olusturulma_tarihi: string;
-    image_url?: string; 
-    yorumlar?: any[];   
-    yazar_id: {
-        kullanici_adi: string;
-        image: string;
-    };
+    image_url?: string;
+    kategori_id: number;
+    yazarlar?: {
+        ad_soyad: string;
+        profil_resmi_url?: string;
+    } | null;
 }
 
 const OneCikanIcerik = () => {
@@ -29,17 +31,24 @@ const OneCikanIcerik = () => {
             setKullanici(JSON.parse(userStr));
         }
         
-        setLoading(true);
-        fetch('http://localhost:3001/api/icerikler')
-        .then(res => res.json())
-        .then(data => {
-            setYazilar(data);
-            setLoading(false);
-        })
-        .catch(err => {
-            console.error('İçerikler çekilirken hata oluştu:', err);
-            setLoading(false);
-        });
+        const fetchYazilar = async () => {
+            try {
+                setLoading(true);
+                const { data, error } = await supabase
+                    .from("yazilar")
+                    .select("*,yazarlar(ad_soyad,profil_resmi_url)")
+                    .order("olusturulma_tarihi", { ascending: false });
+                    
+                if (error) throw error;
+                setYazilar(data || []);
+            } catch (err: any) {
+                console.error('İçerikler çekilirken hata oluştu:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        fetchYazilar();
     }, []);
     
     const handleBegeni = async () => {
@@ -123,15 +132,21 @@ const OneCikanIcerik = () => {
 
                 <div className='flex flex-row space-x-3 items-center'>
                     <div className='w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center text-white font-semibold text-lg overflow-hidden'>
-                        {/* Yazar resmi varsa göster yoksa baş harfi */}
-                        {oneCikanYazi.yazar_id?.image ? (
-                             <img src={oneCikanYazi.yazar_id.image} alt="yazar" className="w-full h-full object-cover" />
+                    
+                        {oneCikanYazi.yazarlar?.profil_resmi_url ? (
+                            <img 
+                                src={oneCikanYazi.yazarlar.profil_resmi_url} 
+                                alt={oneCikanYazi.yazarlar.ad_soyad}
+                                className="w-full h-full object-cover" 
+                            />
                         ) : (
-                            oneCikanYazi.yazar_id?.kullanici_adi?.charAt(0).toUpperCase() || 'U'
+                            oneCikanYazi.yazarlar?.ad_soyad?.charAt(0).toUpperCase() || 'U'
                         )}
                     </div>
                     <div>
-                        <h1 className='text-lg font-semibold'>{oneCikanYazi.yazar_id?.kullanici_adi || 'Bilinmeyen Yazar'}</h1>
+                        <h1 className='text-lg font-semibold'>
+                            {oneCikanYazi.yazarlar?.ad_soyad || 'Bilinmeyen Yazar'}
+                        </h1>
                         <p className='text-sm text-gray-500'>Yazar</p>
                     </div>
                 </div>
@@ -154,8 +169,7 @@ const OneCikanIcerik = () => {
                
                <div className='flex flex-row items-center space-x-1 text-gray-600'>
                     <MessageCircle />
-                   
-                    <p>{oneCikanYazi.yorumlar ? oneCikanYazi.yorumlar.length : 0}</p>
+                    <p>{oneCikanYazi.yorum_sayisi || 0}</p>
                </div>
             </div>
         </div>

@@ -285,9 +285,17 @@ const YaziDetay = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-gray-500 text-sm md:text-base">
             <div className="flex items-center gap-2">
-              <div className="bg-orange-100 p-1.5 rounded-full">
-                <User size={16} className="text-orange-600" />
-              </div>
+              {yazi.yazarlar?.profil_resmi_url ? (
+                <img
+                  src={yazi.yazarlar.profil_resmi_url}
+                  alt={yazi.yazarlar.ad_soyad}
+                  className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                />
+              ) : (
+                <div className="bg-orange-100 p-1.5 rounded-full">
+                  <User size={16} className="text-orange-600" />
+                </div>
+              )}
               <span className="font-medium text-gray-700">
                 {yazi.yazarlar?.ad_soyad || "Anonim"}
               </span>

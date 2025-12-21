@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Sayfa yenilenmemesi için Link kullanıyoruz
+import { Link } from 'react-router-dom';
 
 interface Kategori {
   id: number;

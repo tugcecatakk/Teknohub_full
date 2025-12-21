@@ -77,7 +77,7 @@ const Navbar = () => {
         <div className="flex items-center space-x-4 md:mr-4">
          
           <img
-            src={user.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} // Resim yoksa default ikon
+            src={user.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
             alt="avatar"
             className="w-8 h-8 md:w-10 md:h-10 rounded-full border"
           />

@@ -10,7 +10,6 @@ import KayıtOl from './pages/kayıtol'
 import Categories from './pages/kategoriler'
 import KategoriDetay from './pages/kategoridetay'
 import YaziDetay from './pages/yazıdetay'
-import  Contact  from './pages/contact'
 import Admin from './pages/admin'
 import SifremiUnuttum from './pages/SifremUnuttum'
 
@@ -34,7 +33,6 @@ function AppLayout(){
         <Route path ="/categories" element={<Categories />}/>
         <Route path="/category/:slug" element={<KategoriDetay />} />
         <Route path="/yazi/:id" element={<YaziDetay/>} />
-         <Route path ="contact" element={<Contact />}/>
          <Route path="/admin" element={<Admin />} />
          <Route path="/sifremi-unuttum" element={<SifremiUnuttum />} />
 
