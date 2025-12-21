@@ -42,10 +42,7 @@ const About = () => {
 
     
     <div className='flex flex-row justify-between items-center w-72'>
-       <Link className='flex flex-row items-center space-x-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm px-4 py-2 rounded-2xl hover:scale-105 transition-transform ' to={'/contact'}>
-        <Mail size={16}/>
-        <span>İletişime Geç</span>
-        </Link>
+       
         <Link to={'/'} className='border-2 border-gray-200 p-2 rounded-xl'>
         <Github size={16}/>
         </Link>
@@ -82,33 +79,33 @@ const About = () => {
         </div>
     </div>
     <div className='pb-32 max-w-4xl mx-auto px-6'>
-        {/* Hikayem Başlık */}
+       
         <div className='text-center mb-12'>
             <h1 className='text-4xl font-serif mb-4'>Hikayemiz</h1>
-            <p className='text-xl text-zinc-600 font-serif'>Tasarım ve teknoloji tutkusu ile başlayan yolculuğum</p>
+            <p className='text-xl text-zinc-600 font-serif'>Tasarım ve teknoloji tutkusu ile başlayan yolculuğumuz</p>
         </div>
         
-        {/* Hikaye İçeriği */}
+        
         <div className='grid grid-cols-1 lg:grid-cols-1 gap-8 mb-16'>
             <div className='bg-white rounded-xl p-8 shadow-sm mx-auto max-w-4xl'>
                 <div className='space-y-6 text-zinc-500 leading-relaxed'>
-                    <p>Web tasarımıyla tanışmamız, üniversite yıllarında aldığımız grafik tasarım derslerine dayanıyor. İlk HTML kodlarımızı yazdığımız o an; hem tasarımcı hem de geliştirici kimliğini aynı potada eritebileceğimizi fark ettik. O günden bu yana, bu iki dünyayı kusursuz bir şekilde birleştirmek için çalışıyoruz.</p>
+                    <p>Web tasarımıyla tanışmamız, üniversite yıllarında aldığımız  derslere dayanıyor. İlk HTML kodlarımızı yazdığımız o an; hem tasarımcı hem de geliştirici kimliğini aynı potada eritebileceğimizi fark ettik. O günden bu yana, bu iki dünyayı kusursuz bir şekilde birleştirmek için çalışıyoruz.</p>
                     
                     <p>2015 yılında başlayan blog yolculuğumuz, öğrendiğimiz her bilgiyi paylaşma tutkumuzdan doğdu. Zamanla paylaşımlarımız etrafında kenetlenen küçük bir topluluk oluşturduk ve bu yolda birlikte büyüdük. Her yazımızda okuyucularımıza değer katmayı ve onlara ilham vermeyi kendimize görev ediniyoruz.</p>
                     
-                    <p>Bugün, Modern Blog çatısı altında teknoloji, tasarım ve yazılım geliştirme konularında içerikler üretiyoruz. En büyük amacımız; karmaşık kavramları herkes için anlaşılır hale getirmek ve merak duyan herkesin bu güzel dünyaya dahil olmasını sağlamak.</p>
+                    <p>Bugün, TeknoHub çatısı altında teknoloji, tasarım ve yazılım geliştirme konularında içerikler üretiyoruz. En büyük amacımız; karmaşık kavramları herkes için anlaşılır hale getirmek ve merak duyan herkesin bu güzel dünyaya dahil olmasını sağlamak.</p>
                 </div>
             </div>
         </div>
         
-        {/* 3 Özellik Kutusu */}
+        
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
             <div className='bg-white p-8 rounded-xl shadow-sm text-center space-y-3 hover:shadow-md transition-shadow'>
                 <div className='bg-orange-100 p-3 rounded-full inline-block'>
                     <Heart color='#f27907'/>
                 </div>
                 <h3 className=' font-bold text-gray-800'>Tutkulu</h3>
-                <p className='text-zinc-500'>İşimi severek ve tutkuyla yapıyorum</p>
+                <p className='text-zinc-500'>İşimizi severek ve tutkuyla yapıyoruz</p>
             </div>
             <div className='bg-white p-8 rounded-xl shadow-sm text-center space-y-3 hover:shadow-md transition-shadow'>
                 <div className='bg-orange-100 p-3 rounded-full inline-block'>
@@ -122,7 +119,7 @@ const About = () => {
                     <Sparkles color='#f27907' />
                 </div>
                 <h3 className=' font-bold text-gray-800'>Yaratıcı</h3>
-                <p className='text-zinc-500'>Her projede yenilikçi çözümler üretiyorum</p>
+                <p className='text-zinc-500'>Her projede yenilikçi çözümler üretiyoruz</p>
             </div>
         </div>
     </div>

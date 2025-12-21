@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from "react";
 import { Button } from "../components/buton";
 import { Card, CardContent } from "../components/cardd";

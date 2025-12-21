@@ -52,27 +52,12 @@ const Footer = () => {
           </div>
 
           
-          <div>
-            <h3 className="text-gray-900 font-bold mb-4 uppercase text-sm tracking-wider">Kurumsal</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/about" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Hakkımızda</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">İletişim</Link>
-              </li>
-              <li>
-                <Link to="/gizlilik" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Gizlilik Politikası</Link>
-              </li>
-            </ul>
-          </div>
+          
 
           <div>
             <h3 className="text-gray-900 font-bold mb-4 uppercase text-sm tracking-wider">Hesap</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/profil" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Profilim</Link>
-              </li>
+              
               <li>
                 <Link to="/admin" className="text-gray-600 hover:text-orange-500 transition-colors text-sm">Yazı Oluştur</Link>
               </li>
